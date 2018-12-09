@@ -21,9 +21,9 @@ func ShowFile(w http.ResponseWriter, fileName string) {
 func test(w http.ResponseWriter, r *http.Request) {
 	ShowFile(w, "index.html")
 }
-// func test2(w http.ResponseWriter, r *http.Request) {
-// 	ShowFile(w, "d4peep2.html")
-// }
+func test2(w http.ResponseWriter, r *http.Request) {
+	ShowFile(w, "index_2.html")
+}
 
 func js(w http.ResponseWriter, r *http.Request) {
 	ShowFile(w, "web3.min.js")
@@ -32,8 +32,8 @@ func js(w http.ResponseWriter, r *http.Request) {
 func main() {
 	http.Handle("/inc/", http.StripPrefix("/inc/", http.FileServer(http.Dir("inc"))))
 	http.Handle("/images/", http.StripPrefix("/images/", http.FileServer(http.Dir("images"))))
-	http.HandleFunc("/", test)
-	// http.HandleFunc("/2", test2)
+	http.HandleFunc("/1", test)
+	http.HandleFunc("/2", test2)
 
 	if err := http.ListenAndServe(":9091", nil); err != nil {
 		fmt.Println(err)
